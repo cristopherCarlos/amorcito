@@ -4,251 +4,539 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Dancing Script', cursive;
+  min-height: 100%;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 30%, #e8eaf6 60%, #e0f2f1 100%);
+  background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 35%, #ede7f6 65%, #e8eaf6 100%);
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
-  cursor: crosshair;
+  min-height: 100dvh;
+  padding: 0;
   position: relative;
 }
 
-#fireworksCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
+/* Floating Hearts Background */
 #heartsContainer {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
 
-.card {
-  position: relative;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 30px;
-  padding: 50px 70px;
-  text-align: center;
-  box-shadow:
-    0 8px 32px rgba(219, 112, 147, 0.2),
-    0 0 60px rgba(219, 112, 147, 0.08),
-    inset 0 0 60px rgba(255, 255, 255, 0.1);
-  animation: cardFloat 6s ease-in-out infinite;
-  max-width: 90vw;
-}
-
-.card-glow {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  border-radius: 31px;
-  background: linear-gradient(45deg, #f8bbd0, #ce93d8, #90caf9, #a5d6a7, #f8bbd0);
-  background-size: 400% 400%;
-  z-index: -1;
-  opacity: 0.5;
-  animation: glowRotate 8s ease infinite;
-}
-
-.main-text {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  color: #d81b60;
-  text-shadow:
-    0 0 10px rgba(216, 27, 96, 0.3),
-    0 0 30px rgba(216, 27, 96, 0.15);
-  animation: textPulse 3s ease-in-out infinite;
-  line-height: 1.1;
-}
-
-.name-text {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(4rem, 12vw, 8rem);
-  background: linear-gradient(135deg, #d81b60, #8e24aa, #5c6bc0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(216, 27, 96, 0.3));
-  animation: nameShimmer 4s ease-in-out infinite;
-  line-height: 1.2;
-}
-
-.hearts-decoration {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.hearts-decoration span {
-  font-size: 1.5rem;
-  color: #f48fb1;
-  animation: heartBeat 1.5s ease-in-out infinite;
-  display: inline-block;
-}
-
-.hearts-decoration span:nth-child(2) {
-  animation-delay: 0.3s;
-  color: #ce93d8;
-  font-size: 2rem;
-}
-
-.hearts-decoration span:nth-child(3) {
-  animation-delay: 0.6s;
-  color: #80cbc4;
-}
-
-.subtitle {
-  position: relative;
-  z-index: 10;
-  margin-top: 30px;
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
-  color: #7b6b8a;
-  opacity: 0.8;
-  animation: fadeInUp 2s ease forwards;
-  letter-spacing: 2px;
-}
-
-/* Floating Heart */
 .floating-heart {
   position: absolute;
   bottom: -50px;
-  z-index: 2;
+  z-index: 1;
   opacity: 0;
   pointer-events: none;
   animation: floatUp linear forwards;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
-}
-
-.floating-heart .heart-shape {
-  display: inline-block;
-  font-size: var(--heart-size, 20px);
   color: var(--heart-color, #f48fb1);
-  animation: heartSway var(--sway-duration, 3s) ease-in-out infinite;
+  font-size: var(--heart-size, 20px);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
-/* Click Burst Heart */
+/* Container */
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== LOVE SECTION (HERO) ===== */
+.love-section {
+  position: relative;
+  width: 100%;
+  padding: 52px 20px 44px;
+  background: linear-gradient(180deg, rgba(216,27,96,0.08) 0%, transparent 100%);
+  overflow: hidden;
+  animation: loveSectionAppear 1s ease-out;
+}
+
+#fireworksCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.love-message {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.love-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.8rem, 14vw, 5.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #d81b60, #ad1457, #880e4f, #d81b60);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(216, 27, 96, 0.35));
+  animation: loveShimmer 4s ease-in-out infinite;
+  line-height: 1.1;
+}
+
+.love-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3.2rem, 16vw, 6.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #8e24aa, #5c6bc0, #d81b60);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(142, 36, 170, 0.3));
+  animation: loveShimmer 5s ease-in-out infinite reverse;
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+/* Hearts rows */
+.love-hearts-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.love-heart {
+  display: inline-block;
+  color: #f48fb1;
+  animation: loveHeartBeat 1.5s ease-in-out infinite;
+}
+
+.love-heart.lh-1 { font-size: 1rem; color: #ef9a9a; animation-delay: 0s; }
+.love-heart.lh-2 { font-size: 0.8rem; color: #f48fb1; animation-delay: 0.1s; }
+.love-heart.lh-3 { font-size: 1.3rem; color: #ec407a; animation-delay: 0.2s; }
+.love-heart.lh-4 { font-size: 0.8rem; color: #f48fb1; animation-delay: 0.3s; }
+.love-heart.lh-5 { font-size: 1rem; color: #ef9a9a; animation-delay: 0.4s; }
+.love-heart.lh-6 { font-size: 0.9rem; color: #ce93d8; animation-delay: 0.5s; }
+.love-heart.lh-7 { font-size: 1.2rem; color: #ba68c8; animation-delay: 0.6s; }
+.love-heart.lh-8 { font-size: 1.5rem; color: #ab47bc; animation-delay: 0.7s; }
+.love-heart.lh-9 { font-size: 1.2rem; color: #ba68c8; animation-delay: 0.8s; }
+.love-heart.lh-10 { font-size: 0.9rem; color: #ce93d8; animation-delay: 0.9s; }
+
+.love-hearts-row.bottom .love-heart {
+  animation-name: loveHeartBeatReverse;
+}
+
+/* Burst hearts on click */
 .burst-heart {
   position: fixed;
   pointer-events: none;
   z-index: 100;
-  font-size: 18px;
   animation: burstExplode 1.2s ease-out forwards;
 }
 
-/* Keyframes */
+/* ===== DIVIDER ===== */
+.love-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f48fb1, #ce93d8);
+  opacity: 0.5;
+}
+
+/* ===== HEADER ===== */
+.header {
+  padding: 28px 20px 0;
+  animation: fadeInDown 0.8s ease-out 0.3s backwards;
+}
+
+.main-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #d81b60, #ad1457, #880e4f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(216, 27, 96, 0.25));
+  line-height: 1.2;
+}
+
+.heart-icon {
+  -webkit-text-fill-color: #e91e63;
+  animation: heartPulse 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.start-date {
+  font-size: 0.75rem;
+  color: #9575cd;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* ===== COUNTER ===== */
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  padding: 24px 16px 0;
+}
+
+/* Counter Card */
+.counter-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 20px 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: cardAppear 0.6s ease-out backwards;
+}
+
+.counter-card:nth-child(1) { animation-delay: 0.4s; }
+.counter-card:nth-child(2) { animation-delay: 0.45s; }
+.counter-card:nth-child(3) { animation-delay: 0.5s; }
+.counter-card:nth-child(4) { animation-delay: 0.55s; }
+.counter-card:nth-child(5) { animation-delay: 0.6s; }
+.counter-card:nth-child(6) { animation-delay: 0.65s; }
+
+.counter-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 16px 16px 0 0;
+  background: linear-gradient(90deg, #f48fb1, #ce93d8, #90caf9);
+  opacity: 0.8;
+}
+
+.counter-card:active {
+  transform: scale(0.97);
+}
+
+.counter-card[data-unit="seconds"]::before {
+  background: linear-gradient(90deg, #f06292, #ec407a, #e91e63);
+  animation: shimmerBar 2s ease-in-out infinite;
+}
+
+.counter-value {
+  font-size: clamp(2rem, 9vw, 3.2rem);
+  font-weight: 700;
+  color: #37474f;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: transform 0.15s ease;
+}
+
+.counter-card[data-unit="seconds"] .counter-value {
+  color: #c2185b;
+}
+
+.counter-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #90a4ae;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: #b39ddb;
+  opacity: 0.85;
+  animation: fadeInUp 1s ease-out 0.8s backwards;
+  letter-spacing: 0.5px;
+  padding: 20px 16px 40px;
+}
+
+/* ===== ANIMATIONS ===== */
 @keyframes floatUp {
   0% {
     transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
     opacity: 0;
   }
   10% {
-    opacity: 0.9;
-    transform: translateY(-10vh) translateX(10px) rotate(10deg) scale(1);
+    opacity: 0.6;
+    transform: translateY(-10vh) translateX(8px) rotate(8deg) scale(1);
   }
-  90% {
-    opacity: 0.7;
-  }
+  90% { opacity: 0.4; }
   100% {
-    transform: translateY(-110vh) translateX(calc(var(--drift, 0px))) rotate(var(--end-rotation, 30deg)) scale(0.8);
+    transform: translateY(-110vh) translateX(calc(var(--drift, 0px))) rotate(var(--end-rotation, 25deg)) scale(0.6);
     opacity: 0;
   }
 }
 
-@keyframes heartSway {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  25% { transform: translateX(8px) rotate(5deg); }
-  75% { transform: translateX(-8px) rotate(-5deg); }
-}
-
-@keyframes burstExplode {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot));
-    opacity: 0;
-  }
-}
-
-@keyframes cardFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes glowRotate {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes textPulse {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(216, 27, 96, 0.3), 0 0 30px rgba(216, 27, 96, 0.15);
-    transform: scale(1);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(216, 27, 96, 0.5), 0 0 50px rgba(216, 27, 96, 0.25);
-    transform: scale(1.02);
-  }
-}
-
-@keyframes nameShimmer {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(216, 27, 96, 0.3)); }
-  50% { filter: drop-shadow(0 0 35px rgba(142, 36, 170, 0.5)); }
-}
-
-@keyframes heartBeat {
+@keyframes heartPulse {
   0%, 100% { transform: scale(1); }
-  15% { transform: scale(1.3); }
+  15% { transform: scale(1.25); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+@keyframes shimmerBar {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 0.85; transform: translateY(0); }
+}
+
+@keyframes loveSectionAppear {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes loveShimmer {
+  0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 4px 20px rgba(216, 27, 96, 0.35)); }
+  50% { background-position: 100% 50%; filter: drop-shadow(0 4px 30px rgba(216, 27, 96, 0.55)); }
+}
+
+@keyframes loveHeartBeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.35); }
   30% { transform: scale(1); }
   45% { transform: scale(1.2); }
   60% { transform: scale(1); }
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 0.8; transform: translateY(0); }
+@keyframes loveHeartBeatReverse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  15% { transform: scale(1.3) rotate(5deg); }
+  30% { transform: scale(1) rotate(0deg); }
+  45% { transform: scale(1.2) rotate(-3deg); }
+  60% { transform: scale(1) rotate(0deg); }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .card {
-    padding: 35px 30px;
-    border-radius: 20px;
+@keyframes burstExplode {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot)); opacity: 0; }
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 480px) {
+  .love-section {
+    padding: 60px 28px 52px;
   }
 
-  .hearts-decoration span {
-    font-size: 1.2rem;
+  .love-hearts-row {
+    gap: 14px;
   }
 
-  .hearts-decoration span:nth-child(2) {
-    font-size: 1.5rem;
+  .counter-grid {
+    gap: 14px;
+    padding: 28px 20px 0;
+  }
+
+  .counter-card {
+    padding: 24px 14px;
+    border-radius: 18px;
+  }
+
+  .counter-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 768px) {
+  .container {
+    padding-top: 20px;
+  }
+
+  .love-section {
+    padding: 72px 40px 60px;
+    border-radius: 0 0 40px 40px;
+    background: linear-gradient(180deg, rgba(216,27,96,0.06) 0%, transparent 100%);
+  }
+
+  .love-section::after {
+    width: 80px;
+    bottom: 20px;
+  }
+
+  .love-hearts-row {
+    gap: 18px;
+  }
+
+  .love-heart.lh-3 { font-size: 1.5rem; }
+  .love-heart.lh-8 { font-size: 1.7rem; }
+
+  .header {
+    padding-top: 36px;
+  }
+
+  .counter-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 32px 0 0;
+  }
+
+  .counter-card {
+    padding: 32px 18px;
+    border-radius: 22px;
+  }
+
+  .counter-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 40px rgba(219, 112, 147, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  }
+
+  .subtitle {
+    padding-bottom: 60px;
+  }
+}
+
+/* ===== LARGE DESKTOP ===== */
+@media (min-width: 1024px) {
+  .counter-grid {
+    gap: 24px;
+  }
+
+  .counter-card {
+    padding: 38px 22px;
+    border-radius: 24px;
+  }
+}
+
+/* ===== VERY SMALL SCREENS ===== */
+@media (max-width: 340px) {
+  .love-section {
+    padding: 40px 14px 36px;
+  }
+
+  .love-title {
+    font-size: 2.4rem;
+  }
+
+  .love-name {
+    font-size: 2.8rem;
+  }
+
+  .love-hearts-row {
+    gap: 6px;
+  }
+
+  .counter-grid {
+    gap: 8px;
+    padding: 16px 12px 0;
+  }
+
+  .counter-card {
+    padding: 16px 8px;
+    border-radius: 12px;
+  }
+
+  .counter-value {
+    font-size: 1.8rem;
+  }
+
+  .counter-label {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    padding: 16px 12px 32px;
+  }
+}
+
+/* ===== LANDSCAPE MOBILE ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+  body {
+    justify-content: flex-start;
+  }
+
+  .love-section {
+    padding: 24px 16px 20px;
+  }
+
+  .love-title {
+    font-size: 2.2rem;
+  }
+
+  .love-name {
+    font-size: 2.6rem;
+  }
+
+  .love-hearts-row {
+    margin: 4px 0;
+  }
+
+  .header {
+    padding-top: 12px;
+  }
+
+  .main-title {
+    font-size: 1.4rem;
+  }
+
+  .counter-grid {
+    gap: 8px;
+    padding: 12px 12px 0;
+  }
+
+  .counter-card {
+    padding: 12px 8px;
+  }
+
+  .counter-value {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    padding: 10px 12px 20px;
   }
 }
