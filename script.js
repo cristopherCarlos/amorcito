@@ -4,6 +4,8 @@
   const MAX_FLOATING_HEARTS = 25;
   const HEART_SPAWN_INTERVAL = 600;
 
+  console.log("te amo");
+
   const els = {
     years: document.getElementById('years'),
     months: document.getElementById('months'),
