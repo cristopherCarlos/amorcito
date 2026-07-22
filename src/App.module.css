@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: #b39ddb;
+  opacity: 0.85;
+  animation: fadeInUp 1s ease-out 0.8s backwards;
+  letter-spacing: 0.5px;
+  padding: 20px 16px 40px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 0.85; transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-top: 20px;
+  }
+  .subtitle {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 340px) {
+  .subtitle {
+    padding: 16px 12px 32px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .subtitle {
+    padding: 10px 12px 20px;
+  }
+}

@@ -1,0 +1,166 @@
+.loveSection {
+  position: relative;
+  width: 100%;
+  padding: 52px 20px 44px;
+  background: linear-gradient(180deg, rgba(216, 27, 96, 0.08) 0%, transparent 100%);
+  overflow: hidden;
+  animation: loveSectionAppear 1s ease-out;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.loveSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f48fb1, #ce93d8);
+  opacity: 0.5;
+}
+
+.message {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.8rem, 14vw, 5.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #d81b60, #ad1457, #880e4f, #d81b60);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(216, 27, 96, 0.35));
+  animation: loveShimmer 4s ease-in-out infinite;
+  line-height: 1.1;
+}
+
+.name {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3.2rem, 16vw, 6.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #8e24aa, #5c6bc0, #d81b60);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(142, 36, 170, 0.3));
+  animation: loveShimmer 5s ease-in-out infinite reverse;
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+.heartsRow {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.heart {
+  display: inline-block;
+  animation: loveHeartBeat 1.5s ease-in-out infinite;
+}
+
+.bottom .heart {
+  animation-name: loveHeartBeatReverse;
+}
+
+.burstHeart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100;
+  animation: burstExplode 1.2s ease-out forwards;
+}
+
+@keyframes loveSectionAppear {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes loveShimmer {
+  0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 4px 20px rgba(216, 27, 96, 0.35)); }
+  50% { background-position: 100% 50%; filter: drop-shadow(0 4px 30px rgba(216, 27, 96, 0.55)); }
+}
+
+@keyframes loveHeartBeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.35); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.2); }
+  60% { transform: scale(1); }
+}
+
+@keyframes loveHeartBeatReverse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  15% { transform: scale(1.3) rotate(5deg); }
+  30% { transform: scale(1) rotate(0deg); }
+  45% { transform: scale(1.2) rotate(-3deg); }
+  60% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes burstExplode {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot)); opacity: 0; }
+}
+
+@media (min-width: 480px) {
+  .loveSection {
+    padding: 60px 28px 52px;
+  }
+  .heartsRow {
+    gap: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .loveSection {
+    padding: 72px 40px 60px;
+    border-radius: 0 0 40px 40px;
+    background: linear-gradient(180deg, rgba(216, 27, 96, 0.06) 0%, transparent 100%);
+  }
+  .loveSection::after {
+    width: 80px;
+    bottom: 20px;
+  }
+  .heartsRow {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 340px) {
+  .loveSection {
+    padding: 40px 14px 36px;
+  }
+  .title {
+    font-size: 2.4rem;
+  }
+  .name {
+    font-size: 2.8rem;
+  }
+  .heartsRow {
+    gap: 6px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .loveSection {
+    padding: 24px 16px 20px;
+  }
+  .title {
+    font-size: 2.2rem;
+  }
+  .name {
+    font-size: 2.6rem;
+  }
+  .heartsRow {
+    margin: 4px 0;
+  }
+}

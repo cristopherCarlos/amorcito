@@ -1,75 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Nuestro Tiempo Juntos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div id="heartsContainer"></div>
- 
-  <main class="container">
-    <section class="love-section">
-      <canvas id="fireworksCanvas"></canvas>
-      <div class="love-message">
-        <div class="love-hearts-row">
-          <span class="love-heart lh-1">&hearts;</span>
-          <span class="love-heart lh-2">&hearts;</span>
-          <span class="love-heart lh-3">&hearts;</span>
-          <span class="love-heart lh-4">&hearts;</span>
-          <span class="love-heart lh-5">&hearts;</span>
-        </div>
-        <h2 class="love-title">Te Amo</h2>
-        <h3 class="love-name">Megumi ❤️</h3>
-        <div class="love-hearts-row bottom">
-          <span class="love-heart lh-6">&hearts;</span>
-          <span class="love-heart lh-7">&hearts;</span>
-          <span class="love-heart lh-8">&hearts;</span>
-          <span class="love-heart lh-9">&hearts;</span>
-          <span class="love-heart lh-10">&hearts;</span>
-        </div>
-      </div>
-    </section>
-
-    <header class="header">
-      <h1 class="main-title">Nuestro tiempo juntos <span class="heart-icon">&hearts;</span></h1>
-      <p class="start-date">1 de Noviembre de 2025</p>
-    </header>
-
-    <section class="counter-grid">
-      <div class="counter-card" data-unit="years">
-        <span class="counter-value" id="years">00</span>
-        <span class="counter-label">A&ntilde;os</span>
-      </div>
-      <div class="counter-card" data-unit="months">
-        <span class="counter-value" id="months">00</span>
-        <span class="counter-label">Meses</span>
-      </div>
-      <div class="counter-card" data-unit="days">
-        <span class="counter-value" id="days">00</span>
-        <span class="counter-label">D&iacute;as</span>
-      </div>
-      <div class="counter-card" data-unit="hours">
-        <span class="counter-value" id="hours">00</span>
-        <span class="counter-label">Horas</span>
-      </div>
-      <div class="counter-card" data-unit="minutes">
-        <span class="counter-value" id="minutes">00</span>
-        <span class="counter-label">Minutos</span>
-      </div>
-      <div class="counter-card" data-unit="seconds">
-        <span class="counter-value" id="seconds">00</span>
-        <span class="counter-label">Segundos</span>
-      </div>
-    </section>
-
-    <p class="subtitle">Cada segundo a tu lado es un regalo</p>
-  </main>
-
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Nuestro Tiempo Juntos</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

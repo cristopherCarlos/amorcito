@@ -1,0 +1,35 @@
+.container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -50px;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+  color: var(--heart-color, #f48fb1);
+  font-size: var(--heart-size, 20px);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+    transform: translateY(-10vh) translateX(8px) rotate(8deg) scale(1);
+  }
+  90% { opacity: 0.4; }
+  100% {
+    transform: translateY(-110vh) translateX(calc(var(--drift, 0px))) rotate(var(--end-rotation, 25deg)) scale(0.6);
+    opacity: 0;
+  }
+}
